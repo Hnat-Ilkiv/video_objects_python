@@ -1,29 +1,58 @@
 class Film:
     """
-        My first class
+    The class representes a film.
+
+    Attributes
+    ----------
+    title : str
+    director : str
+    year : int
+    rating : int
+    marks : int
+
+    Methods
+    -------
+    get_instance()
+    rate(mark)
+    get_current_rating()
     """
 
     MIN_MARK_NUMBER = 1
     MAX_MARK_NUMBER = 10
     __instance = None
 
-    def __init__(self, title=None, director=None, year=None, rating=0, marks=0):
-        self.__title = title
-        self.__director = director
-        self.__year = year
-        self.__rating = rating
-        self.__marks = marks
 
-    def __str__(self):
-        return f"Film [Title: {self.__title}, Director: {self.__director}, Year: {self.__year}, Rating: {self.__rating}, Marks: {self.__marks}]"
 
     @staticmethod
     def get_instance():
+        """
+        The method returns an instance of the Film object.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        obj_film : Film
+        """
         if Film.__instance == None:
             Film.__instance = Film()
         return Film.__instance
 
     def rate(self, mark):
+        """
+        The method adds a score to the rating and increases the number
+        of scores.
+
+        Parameters
+        ----------
+        mark : int
+
+        Returns
+        -------
+        None
+        """
         if mark <= MIN_MARK_NUMBER:
             self.__rating += MIN_MARK_NUMBER
         elif mark >= MAX_MARK_NUMBER:
@@ -33,7 +62,26 @@ class Film:
         self.__marks += 1
 
     def get_current_rating(self):
-       return self.__rating / self.__marks if self.__marks != 0 else 0 
+        """
+        The method calculates and returns the current movie rating.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        current_rating : float
+        """
+        return self.__rating / self.__marks if self.__marks != 0 else 0 
+
+    def __init__(self, title=None, director=None, 
+                 year=None, rating=0, marks=0):
+        self.__title = title
+        self.__director = director
+        self.__year = year
+        self.__rating = rating
+        self.__marks = marks
 
     @property
     def title(self):
@@ -74,6 +122,16 @@ class Film:
     @marks.setter
     def marks(self, marks):
         self.__marks = marks
+
+    def __str__(self):
+        return (
+            f"{self.__class__.__name__} = ["
+            f"Title: {self.__title}, "
+            f"Director: {self.__director}, "
+            f"Year: {self.__year}, "
+            f"Rating: {self.__rating}, "
+            f"Marks: {self.__rating}]"
+            )
 
 
 
