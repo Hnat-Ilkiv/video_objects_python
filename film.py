@@ -143,5 +143,5 @@ if __name__ == '__main__':
         Film.get_instance()
     ]
 
-for film in films:
-    print(film)
+    for film in films:
+        print(film)
