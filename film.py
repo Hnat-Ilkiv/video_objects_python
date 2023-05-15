@@ -5,16 +5,25 @@ class Film:
     Attributes
     ----------
     title : str
+        The change retains the name of the film.
     director : str
+        The change retains the director's name.
     year : int
+        The change preserves the year of the movie's release.
     rating : int
+        The change saves the sum of all estimates.
     marks : int
+        The change preserves the number of grades given.
 
     Methods
     -------
     get_instance()
+        The method returns an instance of the Film object.
     rate(mark)
+        The method adds a score to the rating and increases the number
+        of scores.
     get_current_rating()
+        The method calculates and returns the current movie rating.
     """
 
     MIN_MARK_NUMBER = 1
@@ -23,8 +32,8 @@ class Film:
 
 
 
-    @staticmethod
-    def get_instance():
+    @classmethod
+    def get_instance(cls):
         """
         The method returns an instance of the Film object.
 
@@ -35,10 +44,11 @@ class Film:
         Returns
         -------
         obj_film : Film
+            The shift is an object of the Film class.
         """
-        if Film.__instance == None:
-            Film.__instance = Film()
-        return Film.__instance
+        if cls.__instance == None:
+            cls.__instance = Film()
+        return cls.__instance
 
     def rate(self, mark):
         """
@@ -48,18 +58,19 @@ class Film:
         Parameters
         ----------
         mark : int
+            The change preserves the number of grades given.
 
         Returns
         -------
         None
         """
         if mark <= MIN_MARK_NUMBER:
-            self.__rating += MIN_MARK_NUMBER
+            self.rating += MIN_MARK_NUMBER
         elif mark >= MAX_MARK_NUMBER:
-            self.__rating += MAX_MARK_NUMBER
+            self.rating += MAX_MARK_NUMBER
         else:
-            self.__rating += mark
-        self.__marks += 1
+            self.rating += mark
+        self.marks += 1
 
     def get_current_rating(self):
         """
@@ -72,66 +83,31 @@ class Film:
         Returns
         -------
         current_rating : float
+            The change is a current assessment of the film.
         """
-        return self.__rating / self.__marks if self.__marks != 0 else 0 
+        return self.rating / self.marks if self.marks != 0 else 0 
 
     def __init__(self, title=None, director=None, 
                  year=None, rating=0, marks=0):
-        self.__title = title
-        self.__director = director
-        self.__year = year
-        self.__rating = rating
-        self.__marks = marks
+        self.title = title
+        self.director = director
+        self.year = year
+        self.rating = rating
+        self.marks = marks
 
-    @property
-    def title(self):
-        return self.__title
 
-    @title.setter
-    def title(self, title):
-        self.__title = title
-
-    @property
-    def director(self):
-        return self.__director
-
-    @director.setter
-    def director(self, director):
-        self.__director = director
-
-    @property
-    def year(self):
-        return self.__year
-
-    @year.setter
-    def year(self, year):
-        self.__year = year
-
-    @property
-    def rating(self):
-        return self.__rating
-
-    @rating.setter
-    def rating(self, rating):
-        self.__rating = rating
-
-    @property
-    def marks(self):
-        return self.__marks
-
-    @marks.setter
-    def marks(self, marks):
-        self.__marks = marks
-
-    def __str__(self):
+    def __repr__(self):
         return (
             f"{self.__class__.__name__} = ["
-            f"Title: {self.__title}, "
-            f"Director: {self.__director}, "
-            f"Year: {self.__year}, "
-            f"Rating: {self.__rating}, "
-            f"Marks: {self.__rating}]"
-            )
+            f"Title: {self.title}, "
+            f"Director: {self.director}, "
+            f"Year: {self.year}, "
+            f"Rating: {self.rating}, "
+            f"Marks: {self.rating}]"
+        )
+
+    def __str__(self):
+        return f"{self.title}, {self.director}, {self.year}"
 
 
 
