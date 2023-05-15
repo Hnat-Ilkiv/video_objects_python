@@ -1,3 +1,7 @@
+"""
+Author: Hnat Ilkiv IR-15
+Date: May 13, 2023
+"""
 class Film:
     """
     The class representes a film.
@@ -46,7 +50,7 @@ class Film:
         obj_film : Film
             The shift is an object of the Film class.
         """
-        if cls.__instance == None:
+        if cls.__instance is None:
             cls.__instance = Film()
         return cls.__instance
 
@@ -64,10 +68,10 @@ class Film:
         -------
         None
         """
-        if mark <= MIN_MARK_NUMBER:
-            self.rating += MIN_MARK_NUMBER
-        elif mark >= MAX_MARK_NUMBER:
-            self.rating += MAX_MARK_NUMBER
+        if mark <= Film.MIN_MARK_NUMBER:
+            self.rating += Film.MIN_MARK_NUMBER
+        elif mark >= Film.MAX_MARK_NUMBER:
+            self.rating += Film.MAX_MARK_NUMBER
         else:
             self.rating += mark
         self.marks += 1
@@ -85,9 +89,9 @@ class Film:
         current_rating : float
             The change is a current assessment of the film.
         """
-        return self.rating / self.marks if self.marks != 0 else 0 
+        return self.rating / self.marks if self.marks != 0 else 0
 
-    def __init__(self, title=None, director=None, 
+    def __init__(self, title=None, director=None,
                  year=None, rating=0, marks=0):
         self.title = title
         self.director = director
