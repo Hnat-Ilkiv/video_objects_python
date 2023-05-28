@@ -75,7 +75,7 @@ class Film(Video):
         self._marks = marks
 
     def __repr__(self):
-        pass
+        return f"{super().__repr__()} rating={self._rating} marks={self._marks}"
 
     def __str__(self):
         return f"{super().__str__()} {self.get_current_rating()}"

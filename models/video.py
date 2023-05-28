@@ -31,6 +31,9 @@ class Video(ABC):
         self._director = director
         self._year = year
 
+    def __repr__(self):
+        return f"file_name={self._file_name} video_title={self._video_title} director={self._director} year={self._year}"
+
     def __str__(self):
         return f"{self._video_title} {self._director} {self._year}"
 
@@ -49,3 +52,9 @@ class Video(ABC):
         -------
         current_rating : float
         """
+
+    def get_attributes_by_type(self,data_type: type) -> dict:
+        if data_type is None:
+            return self.__dict__
+        else:
+            return {key: value for key, value in self.__dict__.items() if isinstance(value, data_type)}

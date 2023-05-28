@@ -31,7 +31,7 @@ class Clip(Video):
         self._likes = likes
 
     def __repr__(self):
-        pass
+        return f"{super().__repr__()} singer={self._singer} views={self._views} likes={self._likes}"
 
     def __str__(self):
         return f"{super().__str__()} {self._singer} {self.get_current_rating()}"
