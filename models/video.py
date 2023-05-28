@@ -54,7 +54,28 @@ class Video(ABC):
         """
 
     def get_attributes_by_type(self,data_type: type) -> dict:
+        """
+        Using dict comprehension and the __dict__ magic method, it
+        returns a dictionary with all the keys and values of the
+        object's attributes. Also, keys and values need to be returned
+        only for a certain type of value data (the type is passed as
+        an argument). For example, if a method takes an int type, then
+        you should return all attributes that have values of the int 
+        data type. This method will be in an abstract class (but will
+        not be abstract).
+
+        Parameters
+        ----------
+        data_type: type
+
+        Returns
+        -------
+        attributes_by_type: dict
+        """
         if data_type is None:
             return self.__dict__
-        else:
-            return {key: value for key, value in self.__dict__.items() if isinstance(value, data_type)}
+        return {
+            key: value
+            for key, value in self.__dict__.items()
+            if isinstance(value, data_type)
+        }

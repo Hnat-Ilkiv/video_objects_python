@@ -14,7 +14,7 @@ class VideoManager:
 
     Attributes
     ----------
-    _video_list: int
+    _video_list: list[Video]
 
     Methods
     -------
@@ -25,8 +25,8 @@ class VideoManager:
 
     """
 
-    def __init__(self, video_list: list[Video] = []) -> None:
-        self._video_list = video_list
+    def __init__(self, video_list: list[Video] = None) -> None:
+        self._video_list = video_list if video_list else []
 
     def add_video(self, new_video: Video) -> None:
         """
@@ -54,7 +54,9 @@ class VideoManager:
         -------
         find_video_list: list[Video]
         """
-        return [new_video for new_video in self._video_list if new_video._year == year]
+        return [new_video
+                for new_video in self._video_list
+                if new_video._year == year]
 
     def find_video_by_current_rating(self, rating: int) -> list[Video]:
         """
@@ -68,11 +70,18 @@ class VideoManager:
         -------
         find_video_list: list[Video]
         """
-        return [video for video in self._video_list if int(video.get_current_rating()) == rating]
+        return [video
+                for video in self._video_list
+                if int(video.get_current_rating()) == rating]
 
     def generate_list_current_rating(self) -> list[float]:
         """
-        With list comprehension, you create a list of the results of executing an arbitrary method from an abstract class for all objects in the manager's list. For example, there is an abstract method do_something(). You need to create a list in which each item is the result of calling do_something() for the corresponding item in the list from the manager.
+        With list comprehension, you create a list of the results of
+        executing an arbitrary method from an abstract class for all
+        objects in the manager's list. For example, there is an
+        abstract method do_something(). You need to create a list in
+        which each item is the result of calling do_something() for
+        the corresponding item in the list from the manager.
 
         Parameters
         ---------
@@ -86,7 +95,8 @@ class VideoManager:
 
     def generate_list_indexes_and_elements(self) -> list[{int, Video}]:
         """
-        Using the enumerate function, returns a glue from an object and its ordinal number in the list.
+        Using the enumerate function, returns a glue from an object
+        and its ordinal number in the list.
 
         Parameters
         ----------
@@ -96,11 +106,13 @@ class VideoManager:
         -------
         list_indexes_and_elements: list[{int, Video}]
         """
-        return [[index, video] for index, video in enumerate(self._video_list, start=1)]
+        return [[index, video]
+                for index, video in enumerate(self._video_list, start=1)]
 
     def generate_tuple_object_and_current_rating(self) -> tuple[(Video, float)]:
         """
-        Using the zip function, it returns a zip from the object and the result of the generate_list_current_rating(self) method.
+        Using the zip function, it returns a zip from the object and
+        the result of the generate_list_current_rating(self) method.
 
         Parameters
         ----------
@@ -131,6 +143,10 @@ class VideoManager:
 if __name__ == "__main__":
     manager = VideoManager()
     manager.add_video(Film())
-    manager.add_video(Film(file_name="File", video_name="Film", director="Director", year=2000, rating=100, marks=10))
+    manager.add_video(Film(file_name="File", video_name="Film",
+                           director="Director", year=2000,
+                           rating=100, marks=10))
     manager.add_video(Clip())
-    manager.add_video(Clip("File", "Clip", "Director", 2000, "Singer", 100, 50))
+    manager.add_video(Clip(file_name="File", video_name="Clip",
+                           director="Director", year=2000,
+                           singer="Singer", views=100, likes=50))
