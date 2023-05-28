@@ -5,6 +5,7 @@ Date: May 13, 2023
 
 from models.video import Video
 
+
 class Film(Video):
     """
     The class representes a film.
@@ -29,7 +30,7 @@ class Film(Video):
     MAX_MARK_NUMBER = 10
     __instance = None
 
-    def rate(self, mark : int) -> None:
+    def rate(self, mark: int) -> None:
         """
         The method adds a score to the rating and increases the number
         of scores.
@@ -72,7 +73,6 @@ class Film(Video):
         super().__init__(file_name, video_name, director, year)
         self._rating = rating
         self._marks = marks
-
 
     def __repr__(self):
         pass

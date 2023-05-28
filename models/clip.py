@@ -5,6 +5,7 @@ Date: May 13, 2023
 
 from models.video import Video
 
+
 class Clip(Video):
     """
     A class that describes a clip.

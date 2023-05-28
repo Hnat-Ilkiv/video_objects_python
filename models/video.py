@@ -5,6 +5,7 @@ Date: May 20, 2023
 
 from abc import ABC, abstractmethod
 
+
 class Video(ABC):
     """
     This is an abstract Video class. It stores basic information about
