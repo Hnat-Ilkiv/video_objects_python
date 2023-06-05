@@ -2,9 +2,7 @@
 Author: Hnat Ilkiv IR-15
 Date: May 20, 2023
 """
-
 from abc import ABC, abstractmethod
-
 
 class Video(ABC):
     """

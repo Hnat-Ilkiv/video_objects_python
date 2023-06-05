@@ -4,6 +4,7 @@ Date: May 13, 2023
 """
 
 from models.video import Video
+from exceptions.exceptions import IncorrectRatingValueExeption
 
 
 class Film(Video):
@@ -65,6 +66,8 @@ class Film(Video):
         current_rating : float
             The change is a current assessment of the film.
         """
+        if self._rating < self._marks:
+            raise IncorrectRatingValueExeption()
         return self._rating / self._marks if self._marks != 0 else 0
 
     def __init__(self, file_name: str = None, video_name: str = None,
