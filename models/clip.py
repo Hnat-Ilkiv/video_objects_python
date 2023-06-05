@@ -31,10 +31,19 @@ class Clip(Video):
         self._likes = likes
 
     def __repr__(self):
-        pass
+        return (
+            f"{super().__repr__()} "
+            f"singer={self._singer} "
+            f"views={self._views} "
+            f"likes={self._likes}"
+        )
 
     def __str__(self):
-        return f"{super().__str__()} {self._singer} {self.get_current_rating()}"
+        return (
+            f"{super().__str__()} "
+            f"{self._singer} "
+            f"{self.get_current_rating()}"
+        )
 
     def get_current_rating(self) -> float:
         """

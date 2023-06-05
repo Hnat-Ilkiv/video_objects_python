@@ -75,16 +75,25 @@ class Film(Video):
         self._marks = marks
 
     def __repr__(self):
-        pass
+        return (
+            f"{super().__repr__()} "
+            f"rating={self._rating} "
+            f"marks={self._marks}"
+        )
 
     def __str__(self):
-        return f"{super().__str__()} {self.get_current_rating()}"
+        return (
+            f"{super().__str__()} "
+            f"{self.get_current_rating()}"
+        )
 
 
 if __name__ == '__main__':
     films = [
         Film(),
-        Film("File" "Film", "Director", 2000, 100, 10)
+        Film(file_name="File", video_name="Film",
+             director="Director", year=2000,
+             rating=100, marks=10)
     ]
 
     for film in films:
