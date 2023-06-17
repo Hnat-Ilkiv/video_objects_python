@@ -4,6 +4,7 @@ Date: May 13, 2023
 """
 
 from models.video import Video
+from exceptions.exceptions import IncorrectRatingValueExeption
 
 
 class Clip(Video):
@@ -57,6 +58,8 @@ class Clip(Video):
         -------
         current_rating : float
         """
+        if self._views < self._likes:
+            raise IncorrectRatingValueExeption()
         return (
             self._likes / self._views * Clip.RATING_COEFFICIENT
             if self._views != 0

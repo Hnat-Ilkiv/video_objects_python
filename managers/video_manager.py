@@ -6,6 +6,8 @@ Date: May 20, 2023
 from models.video import Video
 from models.film import Film
 from models.clip import Clip
+from decorators.decorators import logged
+from exceptions.exceptions import IncorrectRatingValueExeption
 
 
 class VideoManager:
@@ -145,8 +147,15 @@ if __name__ == "__main__":
     manager.add_video(Film())
     manager.add_video(Film(file_name="File", video_name="Film",
                            director="Director", year=2000,
-                           rating=100, marks=10))
+                           rating=1, marks=10))
     manager.add_video(Clip())
     manager.add_video(Clip(file_name="File", video_name="Clip",
                            director="Director", year=2000,
                            singer="Singer", views=100, likes=50))
+
+    @logged(IncorrectRatingValueExeption)
+    def incorrect_rating_value_exeption_check(manager):
+        for video_item in manager._video_list:
+            print(video_item.get_current_rating())
+
+    incorrect_rating_value_exeption_check(manager)
