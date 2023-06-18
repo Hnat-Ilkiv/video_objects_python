@@ -153,9 +153,15 @@ if __name__ == "__main__":
                            director="Director", year=2000,
                            singer="Singer", views=100, likes=50))
 
-    @logged(IncorrectRatingValueExeption)
+    @logged(IncorrectRatingValueExeption, "file")
     def incorrect_rating_value_exeption_check(manager):
+        """
+        Test lalala
+        """
         for video_item in manager._video_list:
             print(video_item.get_current_rating())
 
     incorrect_rating_value_exeption_check(manager)
+
+    print(incorrect_rating_value_exeption_check.__name__)
+    print(incorrect_rating_value_exeption_check.__doc__)
